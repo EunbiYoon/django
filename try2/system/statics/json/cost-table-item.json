@@ -1,0 +1,56 @@
+{     
+    "May 2nd Week":{
+        "BPA-DR":{
+            "columns": ["Index", "", "Increase", "VI", "Month", "", "Decrease", "VI", "Month"],
+            "rows":[
+            {"index":"1","values":["", "Door,Glass", 0.022, "W18", "", "Door Assembly,Sub", -0.0678, "W19"]},
+            {"index":"2","values":["", "", "", "", "", "Gasket", -0.181, "W19"]}
+            ]
+        },
+        "BPA-FL":{
+            "columns": ["Index", "", "Increase", "VI", "Month", "", "Decrease", "VI", "Month"],
+            "rows":[
+            {"index":"1","values":["", "Resin,PP", 0.55, "W19", "", "Wrap", -0.03, "W18"]}
+            ]
+        },
+        "BPA-TL":{
+            "columns": ["Index", "", "Increase", "VI", "Month", "", "Decrease", "VI", "Month"],
+            "rows":[
+            {"index":"1","values":["", "Damper Assembly,Friction", 0.0069, "W18", "", "Lid Assembly", -0.09, "W19"]},
+            {"index":"2","values":["", "", "", "", "", "Resin,ASA(Chg_Qty)", -0.014, "W18"]}
+            ]
+        },
+        "PAC-DR":{
+            "columns": ["Index", "", "Increase", "VI", "Month", "", "Decrease", "VI", "Month"],
+            "rows":[
+            {"index":"1","values":["", "Bracket,Hinge", 0.026, "W19", "", "Generator Assembly", -1.24, "W19"]},
+            {"index":"2","values":["", "Door,Glass", 0.015, "W18", "", "Resin,EPS", -0.58, "W19"]},
+            {"index":"3","values":["", "", "", "", "", "Parts Assembly,Motor", -2.0, "W19"]},
+            {"index":"4","values":["", "", "", "", "", "Heater Assembly", -0.61, "W19"]},
+            {"index":"5","values":["", "", "", "", "", "Sheet,Steel(Alcot)", -1.99, "W19"]},
+            {"index":"6","values":["", "", "", "", "", "Belt,Poly V", -0.35, "W19"]}
+            ]
+        },
+        "PAC-FL":{
+            "columns": ["Index", "", "Increase", "VI", "Month", "", "Decrease", "VI", "Month"],
+            "rows":[
+            {"index":"1","values":["", "Door,Glass", 0.02, "W18", "", "Stator Assembly,Combined", -2.79, "W9"]},
+            {"index":"2","values":["", "", "", "", "", "Rotor Assembly,Combined", -1.91, "W19"]},
+            {"index":"3","values":["", "", "", "", "", "Tub,Drum(Front)(Rear)", -0.49, "W19"]},
+            {"index":"4","values":["", "", "", "", "", "Bearing,Ball", -1.29, "W19"]},
+            {"index":"5","values":["", "", "", "", "", "Resin,EPS", -0.44, "W19"]},
+            {"index":"6","values":["", "", "", "", "", "Door,Glass", -0.16, "W19"]},
+            {"index":"7","values":["", "", "", "", "", "Wrap", -0.03, "W18"]}
+            ]
+        },
+        "PAC-TL":{
+            "columns": ["Index", "", "Increase", "VI", "Month", "", "Decrease", "VI", "Month"],
+            "rows":[
+            {"index":"1","values":["", "Damper Assembly,Friction", 0.0069, "W18", "", "Resin,PP", -0.834, "W19"]},
+            {"index":"2","values":["", "", "", "", "", "Sheet,Steel(PCM)", -2.38, "W19"]},
+            {"index":"3","values":["", "", "", "", "", "Housing Assembly,Clutch Coupling", -1.44, "W19"]},
+            {"index":"4","values":["", "", "", "", "", "Resin,ASA(Chg_Qty)", -0.014, "W18"]}
+            ]
+        }
+    }
+}

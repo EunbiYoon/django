@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+
+{% block title %}Report{% endblock %}
+{% block name %}{{ post_detail.category}} Dashboard on {{ post_detail.title }}{% endblock %}
+
+{% block sidebar %}
+<form method="post" action="{% url 'detail_cost_url' post_detail.slug post_detail.id %}" class="detail-title" id="detail-cost-1">
+    <div class="title" id="detail-cost-2">BPA Model</div>
+    <div class="model">
+        {% csrf_token %}
+        <div class="model1">
+            <input type="submit" name="action" value="BPA-Dryer" id="detail-cost-model">
+        </div>
+        <div class="model2">
+            <input type="submit" name="action" value="PAC-Dryer" id="detail-cost-model">
+        </div>
+        <div class="model3">
+            <input type="submit" name="action" value="BPA-Front Loader" id="detail-cost-model">
+        </div>
+        <div class="model4">
+            <input type="submit" name="action" value="PAC-Front Loader" id="detail-cost-model">
+        </div>
+        <div class="model5">
+            <input type="submit" name="action" value="BPA-Top Loader" id="detail-cost-model">
+        </div>
+        <div class="model6">
+            <input type="submit" name="action" value="PAC-Top Loader" id="detail-cost-model">
+        </div>
+
+    </div>
+</form>
+
+
+<div class="detail-side">
+    <div class="detail-menu">
+        Menu
+    </div>
+    <a href="{% url 'home_url' %}">
+        <div class="detail-url">Home</div>
+    </a>
+    <a href="{% url 'category_bom_url' 'bom-comparison' %}">
+        <div class="detail-url">BOM Comparison</div>
+    </a>
+    <a href="{% url 'category_cost_url' 'cost-review' %}">
+        <div class="detail-url">Cost Review</div>
+    </a>
+    <a href="#">
+        <div class="detail-url">VI Activity</div>
+    </a>
+</div>
+{% endblock %}
+
+{% block container %}
+    <div class="detail-container" id="detail-cost-3">
+        <!-- graph -->
+        <div class="detail-graph"><canvas width="90vw" height="17vh" id="chart"></canvas></div>
+        {% load static %}
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            var chartColumn=JSON.parse('{{ graph_column |safe }}');
+            var chartData1=JSON.parse('{{graph_value1|safe}}');
+            var chartData2=JSON.parse('{{graph_value2|safe}}');
+            var chartConfig={
+                data:{
+                    labels:chartColumn,
+                    datasets:[{
+                        type:'line',
+                        label:'Victor2 Refresh Pro_WHT',
+                        data:chartData1,
+                        borderColor: 'aquamarine',
+                    }
+                ]
+                },
+                options:{
+                    scales:{
+                        y:{
+                            suggestedMin:270
+                        }
+                    },
+                    plugins:{
+                        title:{
+                            display:true,
+                            text:'Trend Graph',
+                            font:{size:15,family: 'Montserrat'}
+                        },
+                        legend:{
+                            labels:{
+                                // usePointStyle: true,
+                                // pointStyle: 'line',
+                                // display:false,
+                                font:{size:12,family: 'Montserrat'}}
+                        }
+                    }
+                }
+            };
+            var chart=new Chart(document.getElementById('chart'), chartConfig);
+        </script>
+
+        <!-- table 1 -->
+        <div class="detail-trend">
+            <h3>Trend Table </h3>
+            <table align="left">
+                <thead>
+                    <tr>
+                    {% for column in trend_table_data.columns %}
+                        <th>{{ column }}</th>
+                    {% endfor %}
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    {% for row in trend_table_data.rows %}
+                    <tr>
+                        <th>{{ row.index }}</th>
+                        {% for value in row.values %}
+                        <td>{{ value }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <!-- table 2 -->
+        <div class="detail-item">
+            <h3>VI Item</h3>
+            <table align="left">
+                <thead>
+                    <tr>
+                    {% for column in item_table_data.columns %}
+                        <th>{{ column }}</th>
+                    {% endfor %}
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    {% for row in item_table_data.rows %}
+                    <tr>
+                        <th>{{ row.index }}</th>
+                        {% for value in row.values %}
+                        <td>{{ value }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block navigator %}
+    <div class="detail-comment">
+        <div class="title">Comments</div>
+        <div class="content">
+            {% if not post_detail.comment_model.all %}
+                <p>No comments yet</p>
+            {% endif %}
+            {% for comment in post_detail.comment_model.all %}
+                <div class="detail-individual">
+                    <div class="right">{{comment.commenter_name}}</div>
+                    <div class="left">{{comment.date_added|date:"m.d h:i" }}</div>
+                    <div class="bottom">{{comment.comment_body}}</div>
+                </div>
+                <div class="detail-individual-space"><small>e</small></div>
+            {% endfor %}
+            {% if user.is_authenticated %}
+                <form method="post" action="{% url 'detail_cost_url' post_detail.slug post_detail.id %}">
+                    {% csrf_token %}
+                    {{ form_detail.as_table }}
+                    <input type="submit" value="Add Comment" name="action">
+                </form>
+            {% else %}
+                <form>
+                    if you want to remain comment, please login
+                </form>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
